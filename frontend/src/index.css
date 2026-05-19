@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+  body {
+    @apply bg-surface-50 text-surface-900 antialiased;
+    height: 100%;
+  }
+  #root {
+    height: 100%;
+  }
+
+  /* Focus visible: NEVER remove outline without replacement (WCAG) */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-400 ring-offset-2 ring-offset-white;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 10px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+  }
+
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Minimum touch target (44x44px) for accessibility */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Focus ring replacement for custom interactive elements */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2;
+  }
+
+  /* Overscroll behavior utilities to prevent scroll chaining */
+  .overscroll-contain {
+    overscroll-behavior: contain;
+  }
+  .overscroll-none {
+    overscroll-behavior: none;
+  }
+
+  /* Skeleton loading for content placeholders */
+  .skeleton {
+    @apply bg-surface-200 rounded animate-pulse;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* Message appear animation */
+  @keyframes message-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-message-in {
+    animation: message-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Skeleton loading shimmer */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Pulse dot for streaming */
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .animate-pulse-dot {
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  /* Slide transition */
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .animate-slide-in {
+    animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Fade in scale */
+  @keyframes fade-in-scale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-fade-in-scale {
+    animation: fade-in-scale 0.2s ease-out forwards;
+  }
+
+  /* Stagger children animation */
+  .stagger-children > * {
+    opacity: 0;
+    animation: message-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+
+  /* Card hover lift effect */
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Button press effect */
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  /* Markdown content styling */
+  .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+    @apply font-semibold text-surface-900 mt-4 mb-2;
+  }
+  .markdown-content h1 { @apply text-xl; }
+  .markdown-content h2 { @apply text-lg; }
+  .markdown-content h3 { @apply text-base; }
+  .markdown-content p { @apply mb-3 leading-relaxed; }
+  .markdown-content ul { @apply list-disc pl-5 mb-3 space-y-1; }
+  .markdown-content ol { @apply list-decimal pl-5 mb-3 space-y-1; }
+  .markdown-content code {
+    @apply px-1.5 py-0.5 bg-surface-100 rounded text-sm font-mono text-accent-600;
+  }
+  .markdown-content pre {
+    @apply p-4 bg-surface-900 rounded-lg overflow-x-auto mb-3;
+  }
+  .markdown-content pre code {
+    @apply bg-transparent text-surface-200 p-0;
+  }
+  .markdown-content blockquote {
+    @apply pl-4 border-l-4 border-primary-300 text-surface-500 italic my-3;
+  }
+  .markdown-content table {
+    @apply w-full border-collapse mb-3 text-sm;
+  }
+  .markdown-content th, .markdown-content td {
+    @apply border border-surface-200 px-3 py-2 text-left;
+  }
+  .markdown-content th {
+    @apply bg-surface-100 font-medium text-surface-700;
+  }
+  .markdown-content strong {
+    @apply font-semibold text-surface-800;
+  }
+}

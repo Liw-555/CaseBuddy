@@ -1,0 +1,54 @@
+export interface ModelConfig {
+  id: string;
+  name: string;
+  baseUrl: string;
+  apiKey: string;
+  modelId: string;
+  isDefault: boolean;
+}
+
+export interface Skill {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+  installed: boolean;
+  prompts: PromptTemplate[];
+  version: string;
+  author: string;
+}
+
+export interface PromptTemplate {
+  id: string;
+  name: string;
+  template: string;
+  description: string;
+  variables: string[];
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant' | 'system' | 'tool';
+  content: string;
+  timestamp: number;
+  skillId?: string;
+  toolCalls?: ToolCall[];
+}
+
+export interface ToolCall {
+  id: string;
+  name: string;
+  arguments: Record<string, unknown>;
+  result?: string;
+}
+
+export interface AnalysisSession {
+  id: string;
+  title: string;
+  caseText: string;
+  messages: ChatMessage[];
+  createdAt: number;
+  updatedAt: number;
+  activeSkills: string[];
+}
