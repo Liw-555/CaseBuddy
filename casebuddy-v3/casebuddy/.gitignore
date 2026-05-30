@@ -15,14 +15,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-nul
-
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-.venv/
-venv/
 
 # Environment variables
 .env
@@ -53,19 +45,22 @@ frontend/*.log
 # Output files
 outputs/*.pptx
 
-# Archives
-*.zip
-*.tar.gz
-*.rar
-
-# WorkBuddy local
-.workbuddy/
-
-# Outputs (generated, too large)
-casebuddy-v3/casebuddy/outputs/
-
-# Backend generated
-casebuddy-v3/casebuddy/backend/dist/
-
 # PPT Master (submodule)
 ppt-master/
+
+# Gateway Python
+gateway-python/temp/
+gateway-python/__pycache__/
+gateway-python/bots/__pycache__/
+gateway-python/gateway.log
+
+# WorkBuddy
+.workbuddy/
+
+# CaseBuddy cache
+*.casebuddy/
+*.pid
+
+# Test files
+gateway-python/test_*.py
+frontend/.vite/
