@@ -1,0 +1,43 @@
+# Logs
+*.log
+nul
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.local
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# WorkBuddy local
+.workbuddy/
+
+# Outputs (generated, too large)
+casebuddy-v3/casebuddy/outputs/
+
+# Backend generated
+casebuddy-v3/casebuddy/backend/dist/
